@@ -1,0 +1,11 @@
+{
+  "$schema": "node_modules/wrangler/config-schema.json",
+  "name": "coloradoevertonians",
+  "compatibility_date": "2026-10-01",
+  // Static assets only for now. To add dynamic features later (e.g. a contact
+  // form endpoint), add a "main" Worker script and an "assets.binding".
+  "assets": {
+    "directory": "./public",
+    "not_found_handling": "404-page"
+  }
+}
