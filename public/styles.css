@@ -120,6 +120,16 @@ body {
 
 .section p { margin: 0 0 1rem; color: var(--muted); }
 
+/* Photo */
+.photo { margin: 2rem 0 0; }
+.photo img {
+  display: block;
+  width: 100%;
+  height: auto;
+  border-radius: 14px;
+}
+.photo figcaption { margin-top: 0.6rem; color: var(--muted); font-size: 0.875rem; }
+
 /* Social links */
 .links {
   display: grid;
