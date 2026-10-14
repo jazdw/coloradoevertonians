@@ -155,6 +155,7 @@ body {
 .link small { color: var(--muted); font-size: 0.875rem; }
 
 .facebook  { --brand: #1877f2; }
+.instagram { --brand: #e4405f; }
 .x         { --brand: var(--ink); }
 
 /* Footer */
