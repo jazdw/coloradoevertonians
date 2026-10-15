@@ -1,5 +1,7 @@
-// Serves /api/fixtures: Everton's next games, parsed from the iCal feed in the
-// FIXTURES_ICS_URL secret. Everything else falls through to the static assets.
+// API routes for the site; everything else falls through to the static assets.
+//   /api/fixtures  Everton's next games, parsed from the iCal feed in the FIXTURES_ICS_URL secret.
+//   /api/whatsapp  GET: the Turnstile site key. POST: verifies a Turnstile token and returns the
+//                  WhatsApp community invite (WHATSAPP_INVITE_URL secret), so it never appears in the page.
 
 const CACHE_KEY = 'https://coloradoevertonians.com/__cache/fixtures';
 const FRESH_FOR = 6 * 60 * 60 * 1000;   // refetch the feed after 6 hours
@@ -10,6 +12,7 @@ export default {
   async fetch(request, env, ctx) {
     const url = new URL(request.url);
     if (url.pathname === '/api/fixtures') return fixtures(env, ctx);
+    if (url.pathname === '/api/whatsapp') return whatsapp(request, env);
     return env.ASSETS.fetch(request);
   },
 };
@@ -89,9 +92,34 @@ function unescape(s) {
   return s.replace(/\\n/gi, '\n').replace(/\\([,;\\])/g, '$1');
 }
 
-function json(data, status = 200) {
+async function whatsapp(request, env) {
+  const { TURNSTILE_SITE_KEY: siteKey, TURNSTILE_SECRET: secret, WHATSAPP_INVITE_URL: invite } = env;
+  if (!siteKey || !secret || !invite) return json({ error: 'WhatsApp join not configured' }, 503, 'no-store');
+
+  if (request.method === 'GET') return json({ siteKey }, 200, 'no-store');
+  if (request.method !== 'POST') return json({ error: 'Method not allowed' }, 405, 'no-store');
+
+  let token;
+  try {
+    ({ token } = await request.json());
+  } catch {}
+  if (typeof token !== 'string' || !token) return json({ error: 'Missing token' }, 400, 'no-store');
+
+  const form = new FormData();
+  form.append('secret', secret);
+  form.append('response', token);
+  const ip = request.headers.get('CF-Connecting-IP');
+  if (ip) form.append('remoteip', ip);
+  const res = await fetch('https://challenges.cloudflare.com/turnstile/v0/siteverify', { method: 'POST', body: form });
+  const result = await res.json().catch(() => ({}));
+  if (!result.success) return json({ error: 'Verification failed' }, 403, 'no-store');
+
+  return json({ url: invite }, 200, 'no-store');
+}
+
+function json(data, status = 200, cache = 'public, max-age=300') {
   return new Response(JSON.stringify(data), {
     status,
-    headers: { 'Content-Type': 'application/json', 'Cache-Control': 'public, max-age=300' },
+    headers: { 'Content-Type': 'application/json', 'Cache-Control': cache },
   });
 }

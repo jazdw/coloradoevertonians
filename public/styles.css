@@ -166,7 +166,39 @@ body {
 
 .facebook  { --brand: #1877f2; }
 .instagram { --brand: #e4405f; }
+.whatsapp  { --brand: #25d366; }
 .x         { --brand: var(--ink); }
+
+button.link {
+  width: 100%;
+  font: inherit;
+  text-align: left;
+  cursor: pointer;
+}
+
+/* WhatsApp join panel */
+.whatsapp-panel {
+  margin-top: 1rem;
+  padding: 1.25rem 1.5rem;
+  border: 1px solid var(--border);
+  border-left: 4px solid #25d366;
+  border-radius: 14px;
+  background: var(--card);
+}
+.whatsapp-panel h3 { margin: 0 0 0.5rem; font-size: 1.15rem; }
+.whatsapp-panel p { margin: 0 0 0.75rem; }
+.whatsapp-check { min-height: 65px; }
+.whatsapp-status:empty { display: none; }
+.whatsapp-join {
+  display: inline-block;
+  padding: 0.7rem 1.4rem;
+  border-radius: 999px;
+  background: #25d366;
+  color: #0b1f12;
+  font-weight: 700;
+  text-decoration: none;
+}
+.whatsapp-join:hover { background: #1fbe5a; }
 
 /* Footer */
 .footer {

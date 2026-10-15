@@ -9,10 +9,14 @@ npm install
 npm run dev      # http://localhost:8787
 ```
 
-Site files live in `public/`. For the fixtures list, create a `.dev.vars` file (gitignored) with the iCal feed URL:
+Site files live in `public/`. The Worker's settings come from a `.dev.vars` file (gitignored) locally:
 
 ```sh
 FIXTURES_ICS_URL=https://example.com/team.ics
+# Cloudflare Turnstile test keys: always pass, work on localhost
+TURNSTILE_SITE_KEY=1x00000000000000000000AA
+TURNSTILE_SECRET=1x0000000000000000000000000000000AA
+WHATSAPP_INVITE_URL=https://chat.whatsapp.com/LOCAL-TEST-INVITE
 ```
 
 ## Deployment
@@ -24,7 +28,13 @@ Every push to `main` deploys automatically via `.github/workflows/deploy.yml`. T
 
 Manual deploy: `npm run deploy`.
 
-The Worker also needs the `FIXTURES_ICS_URL` secret set on Cloudflare (once): `npx wrangler secret put FIXTURES_ICS_URL`. Without it, the "Next matches" list is hidden.
+The Worker also needs these secrets set on Cloudflare (once each, e.g. `npx wrangler secret put FIXTURES_ICS_URL`). Without them, the matching feature is hidden on the page.
+
+- `FIXTURES_ICS_URL`: iCal feed for the "Next matches" list
+- `TURNSTILE_SECRET`: secret key of the Turnstile widget for coloradoevertonians.com
+- `WHATSAPP_INVITE_URL`: the WhatsApp community invite link, only handed out after a Turnstile check. If it leaks, reset the link in WhatsApp and update this secret.
+
+The Turnstile **site key** is public, so it lives in `vars` in `wrangler.jsonc`.
 
 ## Future features
 

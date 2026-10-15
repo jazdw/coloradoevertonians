@@ -3,6 +3,10 @@
   "name": "coloradoevertonians",
   "main": "src/worker.js",
   "compatibility_date": "2026-10-01",
+  // Public Turnstile site key (safe to commit). Secrets are set on Cloudflare: see README.
+  "vars": {
+    "TURNSTILE_SITE_KEY": "0x4AAAAAAFXOPzkDGP4SfqkC"
+  },
   "routes": [
     { "pattern": "coloradoevertonians.com", "custom_domain": true },
     { "pattern": "www.coloradoevertonians.com", "custom_domain": true }
