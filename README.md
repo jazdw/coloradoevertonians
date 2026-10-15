@@ -1,6 +1,6 @@
 # Colorado Evertonians
 
-Static website for the Colorado Evertonians, the Everton supporters club for Colorado. Hosted on Cloudflare Workers (static assets only).
+Static website for the Colorado Evertonians, the Everton supporters club for Colorado. Hosted on Cloudflare Workers: static assets from `public/`, plus a small Worker (`src/worker.js`) for `/api/*` routes.
 
 ## Local development
 
@@ -9,7 +9,11 @@ npm install
 npm run dev      # http://localhost:8787
 ```
 
-Site files live in `public/`.
+Site files live in `public/`. For the fixtures list, create a `.dev.vars` file (gitignored) with the iCal feed URL:
+
+```sh
+FIXTURES_ICS_URL=https://example.com/team.ics
+```
 
 ## Deployment
 
@@ -20,9 +24,11 @@ Every push to `main` deploys automatically via `.github/workflows/deploy.yml`. T
 
 Manual deploy: `npm run deploy`.
 
+The Worker also needs the `FIXTURES_ICS_URL` secret set on Cloudflare (once): `npx wrangler secret put FIXTURES_ICS_URL`. Without it, the "Next matches" list is hidden.
+
 ## Future features
 
-Events calendar or contact form: add a `main` Worker script in `wrangler.jsonc` to handle API routes (e.g. `/api/contact`) alongside the static assets.
+Contact form: add another route (e.g. `/api/contact`) to `src/worker.js`.
 
 ## Design motif
 

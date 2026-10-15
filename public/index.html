@@ -53,12 +53,17 @@
         <p>We meet for every Everton game at BARna, a soccer bar on East Colfax in Capitol Hill. Early kick-offs, late kick-offs, derby days: look for the group in blue.</p>
         <div class="venue">
           <p class="venue-tag">Home pub</p>
-          <h3><a href="https://barnasoccer.com/" rel="noopener">BARna Soccer &amp; Sports Bar</a></h3>
+          <h3><a href="https://barnasoccer.com/" target="_blank" rel="noopener">BARna Soccer &amp; Sports Bar</a></h3>
           <address>1201 E Colfax Ave #100<br>Denver, CO 80218</address>
           <p class="venue-links">
-            <a href="https://www.google.com/maps/search/?api=1&amp;query=BARna+1201+E+Colfax+Ave+Denver+CO+80218" rel="noopener">Directions</a>
-            <a href="https://barnasoccer.com/" rel="noopener">barnasoccer.com</a>
+            <a href="https://www.google.com/maps/search/?api=1&amp;query=BARna+1201+E+Colfax+Ave+Denver+CO+80218" target="_blank" rel="noopener">Directions</a>
+            <a href="https://barnasoccer.com/" target="_blank" rel="noopener">barnasoccer.com</a>
           </p>
+        </div>
+
+        <div class="fixtures" id="fixtures" hidden>
+          <h3>Next matches</h3>
+          <ol class="fixture-list"></ol>
         </div>
 
         <h3 class="satellite-heading">Satellite locations</h3>
@@ -66,20 +71,20 @@
         <div class="venues-satellite">
           <div class="venue satellite">
             <p class="venue-tag">Fort Collins</p>
-            <h3><a href="https://www.horseanddragonbrewing.com/" rel="noopener">Horse &amp; Dragon Brewing</a></h3>
+            <h3><a href="https://www.horseanddragonbrewing.com/" target="_blank" rel="noopener">Horse &amp; Dragon Brewing</a></h3>
             <address>124 Racquette Dr<br>Fort Collins, CO 80524</address>
             <p class="venue-links">
-              <a href="https://www.google.com/maps/search/?api=1&amp;query=Horse+%26+Dragon+Brewing+124+Racquette+Dr+Fort+Collins+CO+80524" rel="noopener">Directions</a>
-              <a href="https://www.horseanddragonbrewing.com/" rel="noopener">Website</a>
+              <a href="https://www.google.com/maps/search/?api=1&amp;query=Horse+%26+Dragon+Brewing+124+Racquette+Dr+Fort+Collins+CO+80524" target="_blank" rel="noopener">Directions</a>
+              <a href="https://www.horseanddragonbrewing.com/" target="_blank" rel="noopener">Website</a>
             </p>
           </div>
           <div class="venue satellite">
             <p class="venue-tag">Centennial</p>
-            <h3><a href="https://www.alphacharlies.com/" rel="noopener">Alpha Charlie's</a></h3>
+            <h3><a href="https://www.alphacharlies.com/" target="_blank" rel="noopener">Alpha Charlie's</a></h3>
             <address>6631 S Peoria St<br>Centennial, CO 80111</address>
             <p class="venue-links">
-              <a href="https://www.google.com/maps/search/?api=1&amp;query=Alpha+Charlie%27s+6631+S+Peoria+St+Centennial+CO+80111" rel="noopener">Directions</a>
-              <a href="https://www.alphacharlies.com/" rel="noopener">Website</a>
+              <a href="https://www.google.com/maps/search/?api=1&amp;query=Alpha+Charlie%27s+6631+S+Peoria+St+Centennial+CO+80111" target="_blank" rel="noopener">Directions</a>
+              <a href="https://www.alphacharlies.com/" target="_blank" rel="noopener">Website</a>
             </p>
           </div>
         </div>
@@ -91,9 +96,9 @@
         <h2>Get involved</h2>
         <p>Follow along and come say hello.</p>
         <ul class="links">
-          <li><a class="link facebook" href="https://www.facebook.com/groups/coloradoevertonians/" rel="noopener"><svg aria-hidden="true"><use href="#i-facebook"/></svg><span><strong>Facebook</strong><small>Join the group</small></span></a></li>
-          <li><a class="link instagram" href="https://www.instagram.com/coloradoeverton/" rel="noopener"><svg aria-hidden="true"><use href="#i-instagram"/></svg><span><strong>Instagram</strong><small>@coloradoeverton</small></span></a></li>
-          <li><a class="link x" href="https://x.com/EvertonColorado" rel="noopener"><svg aria-hidden="true"><use href="#i-x"/></svg><span><strong>X</strong><small>@EvertonColorado</small></span></a></li>
+          <li><a class="link facebook" href="https://www.facebook.com/groups/coloradoevertonians/" target="_blank" rel="noopener"><svg aria-hidden="true"><use href="#i-facebook"/></svg><span><strong>Facebook</strong><small>Join the group</small></span></a></li>
+          <li><a class="link instagram" href="https://www.instagram.com/coloradoeverton/" target="_blank" rel="noopener"><svg aria-hidden="true"><use href="#i-instagram"/></svg><span><strong>Instagram</strong><small>@coloradoeverton</small></span></a></li>
+          <li><a class="link x" href="https://x.com/EvertonColorado" target="_blank" rel="noopener"><svg aria-hidden="true"><use href="#i-x"/></svg><span><strong>X</strong><small>@EvertonColorado</small></span></a></li>
         </ul>
       </div>
     </section>
@@ -106,6 +111,7 @@
       <p>&copy; <span id="year">2026</span> Colorado Evertonians</p>
     </div>
   </footer>
+  <script src="/fixtures.js" defer></script>
   <script>document.getElementById('year').textContent = new Date().getFullYear();</script>
 </body>
 </html>

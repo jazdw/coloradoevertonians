@@ -1,15 +1,17 @@
 {
   "$schema": "node_modules/wrangler/config-schema.json",
   "name": "coloradoevertonians",
+  "main": "src/worker.js",
   "compatibility_date": "2026-10-01",
-  // Static assets only for now. To add dynamic features later (e.g. a contact
-  // form endpoint), add a "main" Worker script and an "assets.binding".
   "routes": [
     { "pattern": "coloradoevertonians.com", "custom_domain": true },
     { "pattern": "www.coloradoevertonians.com", "custom_domain": true }
   ],
   "assets": {
     "directory": "./public",
-    "not_found_handling": "404-page"
+    "not_found_handling": "404-page",
+    "binding": "ASSETS",
+    // Only /api/* runs the Worker; every other request is served straight from ./public
+    "run_worker_first": ["/api/*"]
   }
 }

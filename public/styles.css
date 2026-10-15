@@ -183,6 +183,26 @@ body {
   letter-spacing: 0.04em;
 }
 
+/* Fixtures */
+.fixtures { margin: 2.5rem 0 0; }
+.fixtures h3 { margin: 0 0 0.75rem; font-size: 1.25rem; }
+.fixture-list { list-style: none; margin: 0; padding: 0; display: grid; gap: 0.6rem; }
+.fixture {
+  display: grid;
+  grid-template-columns: 6.5rem 1fr;
+  gap: 0.25rem 1rem;
+  align-items: center;
+  padding: 0.85rem 1.1rem;
+  border: 1px solid var(--border);
+  border-radius: 14px;
+  background: var(--card);
+}
+.fixture-when { line-height: 1.3; }
+.fixture-when strong { display: block; }
+.fixture-when small, .fixture-comp { color: var(--muted); font-size: 0.875rem; }
+.fixture-teams { font-weight: 600; line-height: 1.35; }
+.fixture-comp { display: block; font-weight: 400; }
+
 /* Venue */
 .venue {
   margin-top: 1.5rem;
